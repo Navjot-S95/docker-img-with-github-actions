@@ -41,5 +41,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: navjot2singh/my-app:${{steps.vars.outputs.tag}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-app:${{steps.vars.outputs.tag}}
  
