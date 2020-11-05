@@ -32,10 +32,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       -
+        name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA})
+      -
         name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: $GITHUB_SHA
+          tags: ${{steps.vars.outputs.tag}}
  
